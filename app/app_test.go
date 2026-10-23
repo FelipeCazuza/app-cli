@@ -19,8 +19,8 @@ func TestGerar(t *testing.T) {
 		t.Errorf("Versão da aplicação incorreta. Esperado: '1.0.0', Obtido: '%s'", app.Version)
 	}
 
-	if len(app.Commands) != 2 {
-		t.Errorf("Número de comandos incorreto. Esperado: 2, Obtido: %d", len(app.Commands))
+	if len(app.Commands) != 4 {
+		t.Errorf("Número de comandos incorreto. Esperado: 4, Obtido: %d", len(app.Commands))
 	}
 }
 
