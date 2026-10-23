@@ -1,0 +1,30 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test-and-build:
+    name: Build, Test & Docker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar ambiente Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: Baixar dependências
+        run: go mod download
+
+      - name: Executar Testes Unitários
+        run: go test ./app/... -v
+
+      - name: Executar Build da Imagem Docker
+        run: docker build -t app-cli .
